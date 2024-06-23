@@ -4,11 +4,11 @@ RM = rm
 
 AR = ar
 
-CFLAGS = -Wall -Werror -Wextra -g3 -L$(LIB)
+CFLAGS = -Wall -Werror -Wextra -g3 -I.
 
-RMFLAGS = -rf
+RMFLAGS = -f
 
-AROPT = rs
+AROPT = rcs
 
 NAME = libft.a
 
@@ -18,8 +18,8 @@ FILES = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strl
 		ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
 		ft_putnbr_fd.c
 
-BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
-		ft_lstmap.c
+BONUS = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c ft_lstadd_back_bonus.c \
+		ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
 
 SRCS = $(FILES:c=o)
 
@@ -27,24 +27,20 @@ SRCS_B = $(BONUS:c=o)
 
 LIB = libft.h
 
-$(NAME): all
+all: $(NAME)
 
-all: comp_all
+$(NAME): $(SRCS)
 	$(AR) $(AROPT) $(NAME) $(SRCS)
 
-comp_all: $(FILES)
-	$(CC) $(CFLAGS) -c $(FILES)
-
-bonus: all comp_bonus
+bonus: $(SRCS_B)
 	$(AR) $(AROPT) $(NAME) $(SRCS_B)
 
-comp_bonus: $(BONUS)
-	$(CC) $(CFLAGS) -c $(BONUS)
-
-clean: $(SRCS)
+clean:
 	$(RM) $(RMFLAGS) *.o
 
 fclean: clean
 	$(RM) $(RMFLAGS) $(NAME)
 
 re: fclean all
+
+.PHONY: all bonus clean fclean re

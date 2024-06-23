@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_hex.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amelniko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/23 14:44:47 by amelniko          #+#    #+#             */
+/*   Updated: 2024/06/23 14:48:59 by amelniko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int	print_point(va_list *pars)
@@ -16,8 +28,8 @@ int	print_point(va_list *pars)
 int	print_hex(uintptr_t num, char format)
 {
 	uintptr_t	lim;
-	int				len_num;
-	char			*hex_lbase;
+	int			len_num;
+	char		*hex_lbase;
 
 	len_num = 1;
 	lim = 16;
