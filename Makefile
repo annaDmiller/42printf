@@ -26,7 +26,7 @@ FILES = ft_printf.c print_hex.c
 
 SRCS = $(FILES:.c=.o)
 
-.PHONY: all clean fclean re libft
+.PHONY: all clean fclean re lib
 
 all: $(NAME)
 
@@ -34,10 +34,10 @@ $(NAME): comp_all $(SRCS)
 	$(AR) $(AR_OPT) ftprintf.a $(SRCS)
 	$(AR) $(AR_OPT)T $(NAME) ./libft/libft.a ftprintf.a
 
-comp_all: libft $(FILES) $(HEADER)
+comp_all: lib $(FILES) $(HEADER)
 	$(CC) $(C_FLAGS) -c $(FILES)
 
-libft: $(LIBFT_DIR)
+lib: $(LIBFT_DIR)
 	$(MAKE) --no-print-directory -C $(LIBFT_DIR) all bonus
 
 clean: $(SRCS)
