@@ -23,4 +23,5 @@ int	print_num(va_list *pars);
 int	print_point(va_list *pars);
 int	print_uint(va_list *pars);
 int	print_hex(uintptr_t num, char format);
+void	find_lim(uintptr_t *lim, int *len_num, uintptr_t num);
 #endif

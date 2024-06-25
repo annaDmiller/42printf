@@ -31,15 +31,8 @@ int	print_hex(uintptr_t num, char format)
 	int			len_num;
 	char		*hex_lbase;
 
-	len_num = 1;
-	lim = 16;
+	find_lim(&lim, &len_num, num);
 	hex_lbase = "0123456789abcdef";
-	while (lim <= num)
-	{
-		len_num++;
-		lim *= 16;
-	}
-	lim /= 16;
 	while (lim >= 1)
 	{
 		if (format == 'X')
@@ -50,4 +43,22 @@ int	print_hex(uintptr_t num, char format)
 		lim /= 16;
 	}
 	return (len_num);
+}
+
+void	find_lim(uintptr_t *lim, int *len_num, uintptr_t num)
+{
+	int	count;
+
+	*lim = 16;
+	*len_num = 1;
+	while (*lim - 1 < num)
+	{
+		(*lim) *= 16;
+		(*len_num)++;
+	}
+	count = 1;
+	*lim = 1;
+	while (count++ < *len_num)
+		*lim *= 16;
+	return ;
 }
