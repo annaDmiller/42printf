@@ -31,14 +31,15 @@ SRCS = $(FILES:.c=.o)
 all: $(NAME)
 
 $(NAME): comp_all $(SRCS)
-	$(AR) $(AR_OPT) ftprintf.a $(SRCS)
-	$(AR) $(AR_OPT)T $(NAME) ./libft/libft.a ftprintf.a
+	mv $(NAME_LIBFT) $(NAME)
+	$(AR) $(AR_OPT) $(NAME) $(SRCS)
 
 comp_all: lib $(FILES) $(HEADER)
 	$(CC) $(C_FLAGS) -c $(FILES)
 
 lib: $(LIBFT_DIR)
 	$(MAKE) --no-print-directory -C $(LIBFT_DIR) all bonus
+	cp $(LIBFT_DIR)/$(NAME_LIBFT) .
 
 clean: $(SRCS)
 	$(MAKE) --no-print-directory -C $(LIBFT_DIR) clean
